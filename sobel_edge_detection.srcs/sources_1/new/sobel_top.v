@@ -1,16 +1,21 @@
 `timescale 1ns / 1ps
 
 module sobel_top(
-    input  wire clk,
-    input  wire sck,
-    input  wire cs,
-    input  wire mosi,
-    output wire miso
+    input  wire        clk,
+    input  wire        sck,
+    input  wire        cs,
+    input  wire        mosi,
+    output wire        miso,
+    
+    // LEDs
+    output wire  [1:0] led,
+    output wire        led_r, led_g, led_b
 );
     // Unused
     wire       w_locked;
     wire       w_reset  = 1'b0;
     
+    // 100MHz global clock (from MMCM)
     wire       clk100m;
     
     wire       wr_req_w;
@@ -50,5 +55,10 @@ module sobel_top(
                              .o_reg_threshold(w_reg_threshold),
                              .o_reg_kernel_size(w_reg_kernel_size),
                              .o_reg_noise_reduction(w_noise_reduction));
+                             
+    assign led   = 2'b11;
+    assign led_r = 1'b0;
+    assign led_g = 1'b1;
+    assign led_b = 1'b0;
                              
 endmodule
