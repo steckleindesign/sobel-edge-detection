@@ -22,8 +22,9 @@ module sobel_top(
     
     wire [7:0] w_reg_threshold;
     wire [7:0] w_reg_kernel_size;
+    wire [7:0] w_noise_reduction;
 
-    clk_wiz_1 mmcm0 (.clk(clk),
+    clk_wiz_1         mmcm0 (.clk(clk),
                              .reset(w_reset),
                              .locked(w_locked),
                              .clk100m(clk100m));
@@ -47,6 +48,7 @@ module sobel_top(
                              .i_wr_data(wr_data_w),
                              .o_rd_data(rd_data_w),
                              .o_reg_threshold(w_reg_threshold),
-                             .o_reg_kernel_size(w_reg_kernel_size));
+                             .o_reg_kernel_size(w_reg_kernel_size),
+                             .o_reg_noise_reduction(w_noise_reduction));
                              
 endmodule
